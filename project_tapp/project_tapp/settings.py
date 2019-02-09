@@ -25,7 +25,7 @@ SECRET_KEY = 'n_f=o0=m__l6phkzqjy%a0e6v89%*zf&ekc^@h2q5@u@i^f&4l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -33,8 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'people_apps.apps.PeopleAppConfig',
+    'people_app.apps.PeopleAppConfig',
     'timesheet_app.apps.TimesheetAppConfig',
+    'funds_app.apps.FundsAppConfig',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'project_tapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project_tapp.wsgi.application'
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -101,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'people_app.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
